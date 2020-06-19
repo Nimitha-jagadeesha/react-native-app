@@ -4,60 +4,116 @@ import { DISHES } from "../shared/dishes";
 import Dishdetail from "./DishDetailComponent";
 import { View, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer} from "react-navigation";
-import { createDrawerNavigator} from 'react-navigation-drawer'
-import Home from './HomeComponent';
-import { Icon } from 'react-native-elements';
+import { createAppContainer } from "react-navigation";
+import { createDrawerNavigator } from "react-navigation-drawer";
+import Home from "./HomeComponent";
+import { Icon } from "react-native-elements";
+import  ContactUs  from "./ContactUs";
+import About from './AboutUs'
 
-const MenuNavigator = createStackNavigator({
-  Menu: { screen: Menu },
-  Dishdetail: { screen: Dishdetail }
-},
-{
-  initialRouteName: 'Menu',
-  navigationOptions: {
+const MenuNavigator = createStackNavigator(
+  {
+    Menu: { screen: Menu },
+    Dishdetail: { screen: Dishdetail },
+  },
+  {
+    initialRouteName: "Menu",
+    navigationOptions: {
       headerStyle: {
-          backgroundColor: "#512DA8"
+        backgroundColor: "#512DA8",
       },
-      headerTintColor: '#fff',
+      headerTintColor: "#fff",
       headerTitleStyle: {
-          color: "#fff"            
-      }
+        color: "#fff",
+      },
+    },
   }
-}
 );
-const HomeNavigator = createStackNavigator({
-  Home: { screen: Home }
-}, {
-  navigationOptions: ({ navigation }) => ({
-    headerStyle: {
-        backgroundColor: "#512DA8"
-    },
-    headerTitleStyle: {
-        color: "#fff"            
-    },
-    headerTintColor: "#fff"  
-  })
-});
+const HomeNavigator = createStackNavigator(
+  {
+    Home: { screen: Home },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#512DA8",
+      },
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerTintColor: "#fff",
+    }),
+  }
+);
+const ContactUsNavigator = createStackNavigator(
+  {
+    ContactUs: { screen: ContactUs },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#512DA8",
+      },
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerTintColor: "#fff",
+    }),
+  }
+);
+const AboutUsNavigator = createStackNavigator(
+  {
+    Abouts: { screen: About },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#512DA8",
+      },
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerTintColor: "#fff",
+    }),
+  }
+);
 
-const MainNavigator = createDrawerNavigator({
-  Home: 
-    { screen: HomeNavigator,
+
+const MainNavigator = createDrawerNavigator(
+  {
+    Home: {
+      screen: HomeNavigator,
       navigationOptions: {
-        title: 'Home',
-        drawerLabel: 'Home'
-      }
+        title: "Home",
+        drawerLabel: "Home",
+      },
     },
-  Menu: 
-    { screen: MenuNavigator,
+    About:{
+      screen: AboutUsNavigator,
       navigationOptions: {
-        title: 'Menu',
-        drawerLabel: 'Menu'
-      }, 
-    }
-}, {
-drawerBackgroundColor: '#D1C4E9'
-});
+        title: "About Us",
+        drawerLabel: "About Us",
+      },
+    },
+    Menu: {
+      screen: MenuNavigator,
+      navigationOptions: {
+        title: "Menu",
+        drawerLabel: "Menu",
+      },
+    },
+    ContactUs: {
+      screen: ContactUsNavigator,
+      navigationOptions: {
+        title: "ContactUs",
+        drawerLabel: "Contact Us",
+      },
+    },
+  },
+  {
+    drawerBackgroundColor: "#D1C4E9",
+  }
+);
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -67,12 +123,12 @@ class Main extends Component {
     };
   }
 
-  onDishSelect = (dishId) => { 
+  onDishSelect = (dishId) => {
     this.setState({ selectedDish: dishId });
   };
 
   render() {
-    const Navdrawer =createAppContainer(MainNavigator)
+    const Navdrawer = createAppContainer(MainNavigator);
     return (
       <View
         style={{
@@ -81,7 +137,7 @@ class Main extends Component {
             Platform.OS === "android" ? 0 : Expo.Constants.statusBarHeight,
         }}
       >
-        <Navdrawer/>
+        <Navdrawer />
       </View>
     );
   }
