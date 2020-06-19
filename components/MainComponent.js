@@ -32,7 +32,7 @@ class Main extends Component {
     };
   }
 
-  onDishSelect = (dishId) => {
+  onDishSelect = (dishId) => { 
     this.setState({ selectedDish: dishId });
   };
 
