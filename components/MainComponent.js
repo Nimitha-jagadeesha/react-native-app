@@ -174,7 +174,8 @@ const MainNavigator = createDrawerNavigator(
         drawerLabel: "About Us",
         drawerIcon: ({ tintColor }) => (
           <Icon
-            name="info-circle"
+          
+            name="info-outline"
             type="font-awosome"
             size={24}
             color={tintColor}
@@ -199,7 +200,7 @@ const MainNavigator = createDrawerNavigator(
         drawerLabel: "Contact Us",
         drawerIcon: ({ tintColor }) => (
           <Icon
-            name="address-card"
+            name="call"
             type="font-awosome"
             size={22}
             color={tintColor}
