@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, FlatList } from "react-native";
 import { Card ,Icon} from "react-native-elements";
+import { DISHES } from "../shared/dishes";
+import { COMMENTS } from "../shared/comments";
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -10,6 +12,7 @@ const mapStateToProps = state => {
       comments: state.comments
     }
   }
+
 function RenderDish(props) {
   const dish = props.dish;
 
@@ -64,6 +67,8 @@ class Dishdetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dishes: DISHES,
+      comments: COMMENTS,
       favorites:[]
     };
   }
