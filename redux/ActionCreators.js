@@ -192,3 +192,7 @@ export const addComment = (comment) => ({
     .then((response) => dispatch(addComment(response)))
     .catch(error =>  { console.log('post comments', error.message)});
   };
+  export const deleteFavorite = (dishId) => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: dishId
+});  
