@@ -23,9 +23,15 @@ function RenderItem(props) {
         }
         else if (props.errMess) {
             return(
-                <View> 
-                    <Text>{props.erreMess}</Text>
-                </View>
+                <ScrollView>
+                <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+                <History />
+                <Card
+                    title='Corporate Leadership'>
+                    <Text>{this.props.leaders.errMess}</Text>
+                </Card>
+                </Animatable.View>
+            </ScrollView>
             );
         }
         else {        
