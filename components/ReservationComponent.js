@@ -9,6 +9,8 @@ import {
   Button,
   Alert,
 } from "react-native";
+import * as Animatable from "react-native-animatable";
+
 import DatePicker from "react-native-datepicker";
 
 class Reservation extends Component {
@@ -70,7 +72,8 @@ class Reservation extends Component {
 
   render() {
     return (
-      <ScrollView>
+
+      <Animatable.View animation="zoomIn" duration={2000}>
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Number of Guests</Text>
           <Picker
@@ -133,7 +136,7 @@ class Reservation extends Component {
             accessibilityLabel="Learn more about this purple button"
           />
         </View>
-      </ScrollView>
+      </Animatable.View>
     );
   }
 }
