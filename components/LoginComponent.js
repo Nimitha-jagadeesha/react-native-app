@@ -29,6 +29,13 @@ class Login extends Component {
 
     static navigationOptions = {
         title: 'Login',
+        headerStyle: {
+            backgroundColor: "blue",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            color: "#fff",
+          },
     };
 
     handleLogin() {

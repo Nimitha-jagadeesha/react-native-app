@@ -10,7 +10,8 @@ import {
   Alert,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-
+import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
 import DatePicker from "react-native-datepicker";
 
 class Reservation extends Component {
@@ -24,7 +25,35 @@ class Reservation extends Component {
       showModal: false,
     };
   }
+  async obtainNotificationPermission() {
+    let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+    if (permission.status !== 'granted') {
+        permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            Alert.alert('Permission not granted to show notifications');
+        }
+    }
+    return permission;
+}
 
+async presentLocalNotification(date) {
+  try{
+   // await this.obtainNotificationPermission();
+    Notifications.presentLocalNotificationAsync({
+        title: 'Your Reservation',
+        body: 'Reservation for '+ date + ' requested',
+        ios: {
+            sound: true
+        },
+        android: {
+            sound: true,
+            vibrate: true,
+            color: '#512DA8'
+        }
+    });
+  }
+  catch(err){console.log(err)}
+}
   static navigationOptions = {
     title: "Reserve Table",
     headerStyle: {
@@ -39,6 +68,7 @@ class Reservation extends Component {
  
 
   handleReservation() {
+   
     Alert.alert(
       "Your Reservation OK?",
       "Number of Guests :"+this.state.guests + "\n Smoking ? "+ (this.state.smoking?"Yes\n":"No\n")+"Date and time: "+this.state.date,
@@ -53,6 +83,7 @@ class Reservation extends Component {
         {
           text: "OK",
           onPress: () => {
+          this.presentLocalNotification(this.state.date)
            this.resetForm()
           },
         },
