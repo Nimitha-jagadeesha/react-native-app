@@ -9,6 +9,7 @@ import {
   Button,
   Alert,
   PanResponder,
+  Share,
 } from "react-native";
 import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
@@ -40,7 +41,15 @@ function RenderDish(props) {
     if (dx > 200) return true;
     else return false;
   };
-
+  const shareDish = (title, message, url) => {
+    Share.share({
+        title: title,
+        message: title + ': ' + message + ' ' + url,
+        url: url
+    },{
+        dialogTitle: 'Share ' + title
+    })
+}
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: (e, gestureState) => {
       return true;
@@ -75,9 +84,7 @@ function RenderDish(props) {
           ],
           { cancelable: false }
         );
-        else if (recognizeRightDrag(gestureState))
-            props.toggleModal()
-      
+      else if (recognizeRightDrag(gestureState)) props.toggleModal();
 
       return true;
     },
@@ -88,7 +95,7 @@ function RenderDish(props) {
         animation="fadeInDown"
         duration={2000}
         delay={1000}
-       // ref={this.handleViewRef}
+        // ref={this.handleViewRef}
         {...panResponder.panHandlers}
       >
         <Card featuredTitle={dish.name} image={{ uri: baseUrl + dish.image }}>
@@ -114,6 +121,14 @@ function RenderDish(props) {
               color="#512DA8"
               onPress={() => props.toggleModal()}
             />
+            <Icon
+                            raised
+                            reverse
+                            name='share'
+                            type='font-awesome'
+                            color='#51D2A8'
+                            style={style.cardItem}
+                            onPress={() => shareDish(dish.name, dish.description, baseUrl + dish.image)} />
           </View>
         </Card>
       </Animatable.View>
