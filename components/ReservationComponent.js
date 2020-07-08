@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Permissions from "expo-permissions";
-import * as Notifications from "expo-notifications";
+import { Notifications } from 'expo';
 import DatePicker from "react-native-datepicker";
 import * as Calendar from "expo-calendar";
 class Reservation extends Component {
@@ -26,44 +26,42 @@ class Reservation extends Component {
     };
   }
   async obtainNotificationPermission() {
-    let permission = await Permissions.getAsync(
-      Permissions.USER_FACING_NOTIFICATIONS
-    );
-    if (permission.status !== "granted") {
-      permission = await Permissions.askAsync(
-        Permissions.USER_FACING_NOTIFICATIONS
-      );
-      if (permission.status !== "granted") {
-        Alert.alert("Permission not granted to show notifications");
-      }
-    } else {
-      if (Platform.OS === "android") {
-        Notifications.createChannelAndroidAsync("notify", {
-          name: "notify",
-          sound: true,
-          vibrate: true,
-        });
-      }
+    let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+    if (permission.status !== 'granted') {
+        permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            Alert.alert('Permission not granted to show notifications');
+        }
+    }
+    else {
+        if (Platform.OS === 'android') {
+            Notifications.createChannelAndroidAsync('notify', {
+            name: 'notify',
+            sound: true,
+            vibrate: true,
+        
+        });}
+        
     }
     return permission;
-  }
+}
 
-  async presentLocalNotification(guests) {
+async presentLocalNotification(guests) {
     await this.obtainNotificationPermission();
     Notifications.presentLocalNotificationAsync({
-      title: "Your Reservation",
-      body: "Reservation for " + guests + " guests is requested",
+        title: 'Your Reservation',
+        body: 'Reservation for '+ guests + ' guests is requested',
+        
+        ios: {
+            sound: true
+        },
+        android: {
+            channelId:'notify',
 
-      ios: {
-        sound: true,
-      },
-      android: {
-        sound: true,
-        vibrate: true,
-        color: "#512DA8",
-      },
+            color: '#512DA8'
+        }
     });
-  }
+}
   static navigationOptions = {
     title: "Reserve Table",
     headerStyle: {
