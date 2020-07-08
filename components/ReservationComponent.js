@@ -46,18 +46,17 @@ class Reservation extends Component {
     return permission;
 }
 
-async presentLocalNotification(guests) {
+async presentLocalNotification(date) {
     await this.obtainNotificationPermission();
     Notifications.presentLocalNotificationAsync({
         title: 'Your Reservation',
-        body: 'Reservation for '+ guests + ' guests is requested',
+        body: 'Reservation for '+ new Date(Date.parse(date)) + ' requested',
         
         ios: {
             sound: true
         },
         android: {
             channelId:'notify',
-
             color: '#512DA8'
         }
     });
