@@ -10,10 +10,10 @@ import {
   Alert,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import * as Permissions from 'expo-permissions';
-import * as Notifications from 'expo-notifications';
+import * as Permissions from "expo-permissions";
+import * as Notifications from "expo-notifications";
 import DatePicker from "react-native-datepicker";
-
+import * as Calendar from "expo-calendar";
 class Reservation extends Component {
   constructor(props) {
     super(props);
@@ -26,65 +26,116 @@ class Reservation extends Component {
     };
   }
   async obtainNotificationPermission() {
-    let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
-    if (permission.status !== 'granted') {
-        permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
-        if (permission.status !== 'granted') {
-            Alert.alert('Permission not granted to show notifications');
-        }
+    let permission = await Permissions.getAsync(
+      Permissions.USER_FACING_NOTIFICATIONS
+    );
+    if (permission.status !== "granted") {
+      permission = await Permissions.askAsync(
+        Permissions.USER_FACING_NOTIFICATIONS
+      );
+      if (permission.status !== "granted") {
+        Alert.alert("Permission not granted to show notifications");
+      }
+    } else {
+      if (Platform.OS === "android") {
+        Notifications.createChannelAndroidAsync("notify", {
+          name: "notify",
+          sound: true,
+          vibrate: true,
+        });
+      }
     }
     return permission;
-}
+  }
 
-async presentLocalNotification(date) {
-  try{
-   // await this.obtainNotificationPermission();
+  async presentLocalNotification(guests) {
+    await this.obtainNotificationPermission();
     Notifications.presentLocalNotificationAsync({
-        title: 'Your Reservation',
-        body: 'Reservation for '+ date + ' requested',
-        ios: {
-            sound: true
-        },
-        android: {
-            sound: true,
-            vibrate: true,
-            color: '#512DA8'
-        }
+      title: "Your Reservation",
+      body: "Reservation for " + guests + " guests is requested",
+
+      ios: {
+        sound: true,
+      },
+      android: {
+        sound: true,
+        vibrate: true,
+        color: "#512DA8",
+      },
     });
   }
-  catch(err){console.log(err)}
-}
   static navigationOptions = {
     title: "Reserve Table",
     headerStyle: {
-        backgroundColor: "blue",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        color: "#fff",
-      },
+      backgroundColor: "blue",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      color: "#fff",
+    },
   };
+  async obtainCalendarPermission() {
+    let permission = await Permissions.getAsync(Permissions.CALENDAR);
+    if (permission.status !== "granted") {
+      permission = await Permissions.askAsync(Permissions.CALENDAR);
+      if (permission.status !== "granted") {
+        Alert.alert("Permission not granted to show notification.");
+      }
+    }
+    return permission;
+  }
 
- 
+  async obtainCalendarId() {
+    var calendar = null;
+    if (Platform.OS === "ios") {
+      calendar = await Calendar.getDefaultCalendarAsync();
+    } else {
+      const calendars = await Calendar.getCalendarsAsync();
+      calendar = calendars
+        ? calendars.find((cal) => cal.isPrimary) || calendars[0]
+        : null;
+    }
+    return calendar ? calendar.id : null;
+  }
+
+  async addReservationToCalendar(date) {
+    await this.obtainCalendarPermission();
+    const calendarId = await this.obtainCalendarId();
+    const startDate = new Date(Date.parse(date));
+    const endDate = new Date(Date.parse(date) + 2 * 60 * 60 * 1000);
+    await Calendar.createEventAsync(calendarId, {
+      startDate: startDate,
+      endDate: endDate,
+      title: "Con Fusion Table Reservation",
+      timeZone: "Asia/Hong_Kong",
+      location:
+        "121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong",
+    });
+  }
 
   handleReservation() {
-   
     Alert.alert(
       "Your Reservation OK?",
-      "Number of Guests :"+this.state.guests + "\n Smoking ? "+ (this.state.smoking?"Yes\n":"No\n")+"Date and time: "+this.state.date,
+      "Number of Guests :" +
+        this.state.guests +
+        "\n Smoking ? " +
+        (this.state.smoking ? "Yes\n" : "No\n") +
+        "Date and time: " +
+        this.state.date,
       [
         {
           text: "Cancel",
           onPress: () => {
-            this.resetForm()
-           },
+            this.resetForm();
+          },
           style: "cancel",
         },
         {
           text: "OK",
           onPress: () => {
-          this.presentLocalNotification(this.state.date)
-           this.resetForm()
+            this.presentLocalNotification(this.state.date);
+            this.addReservationToCalendar(this.state.date);
+            this.resetForm();
           },
         },
       ],
@@ -103,7 +154,6 @@ async presentLocalNotification(date) {
 
   render() {
     return (
-
       <Animatable.View animation="zoomIn" duration={2000}>
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Number of Guests</Text>
@@ -152,7 +202,6 @@ async presentLocalNotification(date) {
               dateInput: {
                 marginLeft: 36,
               },
-             
             }}
             onDateChange={(date) => {
               this.setState({ date: date });
