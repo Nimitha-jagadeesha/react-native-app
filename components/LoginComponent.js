@@ -6,7 +6,9 @@ import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { baseUrl } from "../shared/baseUrl";
-
+import * as ImageManipulator from 'expo-image-manipulator'
+import * as Asset from 'expo-asset'
+import * as Camera from 'expo-camera'
 class LoginTab extends Component {
   constructor(props) {
     super(props);
@@ -145,24 +147,33 @@ class RegisterTab extends Component {
 
   getImageFromCamera = async () => {
     const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
-    const cameraRollPermission = await Permissions.askAsync(
-      Permissions.CAMERA_ROLL
-    );
+    const cameraRollPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
-    if (
-      cameraPermission.status === "granted" &&
-      cameraRollPermission.status === "granted"
-    ) {
-      let capturedImage = await ImagePicker.launchCameraAsync({
-        allowsEditing: true,
-        aspect: [4, 3],
-      });
-      if (!capturedImage.cancelled) {
-        console.log(capturedImage);
-        this.setState({ imageUrl: capturedImage.uri });
-      }
+    if (cameraPermission.status === 'granted' && cameraRollPermission.status === 'granted') {
+        let capturedImage = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+        });
+        if (!capturedImage.cancelled) {
+            console.log(capturedImage);
+            this.processImage(capturedImage.uri);
+        }
     }
-  };
+
+}
+
+processImage = async (imageUri) => {
+    let processedImage = await ImageManipulator.manipulateAsync(
+        imageUri, 
+        [
+            {resize: {width: 400}}
+        ],
+        {format: ImageManipulator.SaveFormat.PNG}
+    );
+    console.log(processedImage);
+    this.setState({imageUrl: processedImage.uri });
+
+}
 
   static navigationOptions = {
     title: "Register",
@@ -224,7 +235,7 @@ class RegisterTab extends Component {
           <Input
             placeholder="First Name"
             leftIcon={{ type: "font-awesome", name: "user-o" }}
-            onChangeText={(lastname) => this.setState({ firstname })}
+            onChangeText={(firstname) => this.setState({ firstname })}
             value={this.state.firstname}
             containerStyle={styles.formInput}
           />
