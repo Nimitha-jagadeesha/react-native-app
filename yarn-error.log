@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Nimitha\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add redux-persist
+  C:\Program Files\nodejs\node.exe C:\Users\Nimitha\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @react-native-community/netinfo
 
 PATH: 
   C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files\AdoptOpenJDK\jdk-11.0.4.11-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Program Files\Java\jre1.8.0_201\bin;C:\Program Files\Java\javafx-sdk-11.0.2\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Nimitha\Anaconda3;C:\Users\Nimitha\Anaconda3\Library\mingw-w64\bin;C:\Users\Nimitha\Anaconda3\Library\usr\bin;C:\Users\Nimitha\Anaconda3\Library\bin;C:\Users\Nimitha\Anaconda3\Scripts;C:\Python37-32\Scripts\;C:\Python37-32\;C:\Users\Nimitha\AppData\Local\Microsoft\WindowsApps;C:\Users\Nimitha\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\Nmap;C:\Program Files\JetBrains\PyCharm Community Edition 2019.2\bin;;%JAVA_HOME\bin;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Nimitha\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\4.2\bin;
@@ -27,9 +27,18 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
-      "@react-native-community/async-storage": "react-native-community/async-storage",
+      "@react-native-community/async-storage": "^1.11.0",
       "@react-native-community/masked-view": "0.1.6",
       "expo": "~37.0.3",
+      "expo-asset": "~8.1.5",
+      "expo-av": "~8.1.0",
+      "expo-camera": "~8.2.0",
+      "expo-image-manipulator": "~8.1.0",
+      "expo-image-picker": "~8.1.0",
+      "expo-mail-composer": "~8.1.0",
+      "expo-notifications": "~0.1.1",
+      "expo-permissions": "~8.1.0",
+      "expo-secure-store": "~8.1.0",
       "react": "~16.9.0",
       "react-dom": "~16.9.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
@@ -37,6 +46,7 @@ npm manifest:
       "react-native-datepicker": "^1.7.2",
       "react-native-elements": "^1.0.0-beta8",
       "react-native-gesture-handler": "~1.6.0",
+      "react-native-image-picker": "^2.3.2",
       "react-native-reanimated": "~1.7.0",
       "react-native-safe-area-context": "0.7.3",
       "react-native-safe-area-view": "^1.1.1",
@@ -45,10 +55,12 @@ npm manifest:
       "react-native-web": "~0.11.7",
       "react-navigation": "^4.3.9",
       "react-navigation-drawer": "^2.4.13",
-      "react-navigation-stack": "^2.7.0",
+      "react-navigation-stack": "^2.8.2",
+      "react-navigation-tabs": "^2.9.0",
       "react-redux": "^7.2.0",
       "redux": "^4.0.5",
       "redux-logger": "^3.0.6",
+      "redux-persist": "^6.0.0",
       "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
@@ -1119,9 +1131,10 @@ Lockfile:
       "@types/yargs" "^15.0.0"
       chalk "^3.0.0"
   
-  "@react-native-community/async-storage@react-native-community/async-storage":
+  "@react-native-community/async-storage@^1.11.0":
     version "1.11.0"
-    resolved "https://codeload.github.com/react-native-community/async-storage/tar.gz/bf0c2547582cf830c499aeaaa227ea7ef29fb3c2"
+    resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.11.0.tgz#bf81b8813080846f150c67f531987c429b442166"
+    integrity sha512-Pq9LlmvtCEKAGdkyrgTcRxNh2fnHFykEj2qnRYijOl1pDIl2MkD5IxaXu5eOL0wgOtAl4U//ff4z40Td6XR5rw==
     dependencies:
       deep-assign "^3.0.0"
   
@@ -1658,7 +1671,7 @@ Lockfile:
       "@babel/plugin-transform-template-literals" "^7.0.0"
       babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
   
-  badgin@^1.1.2:
+  badgin@^1.1.2, badgin@^1.1.5:
     version "1.1.8"
     resolved "https://registry.yarnpkg.com/badgin/-/badgin-1.1.8.tgz#6e4c930554945d31752e5de2d8a316036dccda5e"
     integrity sha512-EGbhb5OwZreHS0vd8tFLzdWBqvz3dFREf1sYK5EtivtTDUkYCLSEKz1KvXJ4MBHAyKGDymx8wYPCQwrftQBifw==
@@ -2413,6 +2426,11 @@ Lockfile:
       snapdragon "^0.8.1"
       to-regex "^3.0.1"
   
+  expo-application@~2.1.1:
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/expo-application/-/expo-application-2.1.1.tgz#7cd61ccc53d7a0c85c8aac64b5ea59b20a1cb803"
+    integrity sha512-iq24Zgd4EmbFakHL2saVdA2zexhRX80RSbAtrWrp3BaVDd7yFNAtcwjW4r1Oyhm00YEREWp70sTaXrWs6jKHQA==
+  
   expo-asset@~8.1.5:
     version "8.1.7"
     resolved "https://registry.yarnpkg.com/expo-asset/-/expo-asset-8.1.7.tgz#32618e51f85df56f1d7dd54c71eb486ae7f7674e"
@@ -2424,18 +2442,34 @@ Lockfile:
       path-browserify "^1.0.0"
       url-parse "^1.4.4"
   
-  expo-constants@~9.0.0:
-    version "9.0.0"
-    resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.0.0.tgz#35c600079ee91d38fe4f56375caae6e90f122fdd"
-    integrity sha512-1kqZMM8Ez5JT3sTEx8I69fP6NYFLOJjeM6Z63dD/m2NiwvzSADiO5+BhghnWNGN1L3bxbgOjXS6EHtS7CdSfxA==
+  expo-av@~8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-8.1.0.tgz#376e2a821168cd83e997c6dd84350fab6b293f10"
+    integrity sha512-owWxOCyK+dPyT3pF4rDOf2W8Sn8LSEvfw1HvU9xM0wzH7xF0bw3Zs3wcXxvtfhnXAZ5dCDQfvZI5cXk+lml+IQ==
+    dependencies:
+      lodash "^4.17.15"
+      nullthrows "^1.1.0"
   
-  expo-constants@~9.1.1:
+  expo-camera@~8.2.0:
+    version "8.2.0"
+    resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-8.2.0.tgz#9c849f0dc409e1fe6ee886f479e0ee0050b6d386"
+    integrity sha512-wGVqQVVR4YCkHuI7u+qloI1p2UbYwpU8hs0IEM+1Th4JQekAPUEfOmJI6ZHGj36El8f87ghRed2MXzOssn4hHg==
+    dependencies:
+      lodash "^4.6.0"
+      prop-types "^15.6.0"
+  
+  expo-constants@<10.0.0, expo-constants@~9.1.1:
     version "9.1.1"
     resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.1.1.tgz#bca141ee3d4550e308798128f66c6d9c6a206ca1"
     integrity sha512-zCa/wRARODHd6BSwxjBhidmao0AqQnKmLkl0tsVIoZlRyPDHsEaxNR/m+7wqGC7qiC+UpG1qRnvLOLwCGt2ihg==
     dependencies:
       fbjs "1.0.0"
       uuid "^3.3.2"
+  
+  expo-constants@~9.0.0:
+    version "9.0.0"
+    resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.0.0.tgz#35c600079ee91d38fe4f56375caae6e90f122fdd"
+    integrity sha512-1kqZMM8Ez5JT3sTEx8I69fP6NYFLOJjeM6Z63dD/m2NiwvzSADiO5+BhghnWNGN1L3bxbgOjXS6EHtS7CdSfxA==
   
   expo-error-recovery@~1.1.0:
     version "1.1.0"
@@ -2456,6 +2490,18 @@ Lockfile:
     dependencies:
       fbjs "1.0.0"
       fontfaceobserver "^2.1.0"
+  
+  expo-image-manipulator@~8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/expo-image-manipulator/-/expo-image-manipulator-8.1.0.tgz#63ae66e1a65e5be8c6ee7036fe88d53af551853f"
+    integrity sha512-ephPXtzEx32Js1SQ1B2IXdpi4Gn34DIMQGAOwrwOPfUuWXQX9jGxyX3tktIGMmQ7lHueVr0a8zdh6ME0YGHjkw==
+  
+  expo-image-picker@~8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-8.1.0.tgz#014e4f4aaef4c1daf56d13de27a41ef78660aa15"
+    integrity sha512-UMHiDGiflg47A/nfnmJ1gYdB/sEoxB4STVGgMeLNYpUkVR59kUWqsGTyVEtSywNCLPuXPZVB9NaRUd81Rbs7lA==
+    dependencies:
+      expo-permissions "~8.1.0"
   
   expo-keep-awake@~8.1.0:
     version "8.1.0"
@@ -2483,10 +2529,32 @@ Lockfile:
     dependencies:
       invariant "^2.2.4"
   
+  expo-mail-composer@~8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/expo-mail-composer/-/expo-mail-composer-8.1.0.tgz#7de693861e374add34ba4da69df677c2d6ba7104"
+    integrity sha512-CMkDa5YX9YZj/ZLHp0f1WAMBrCZjGqsloOH9JzhnCwMVy0BR+lLYoYWiwx2zk2JTpUgADXjdQKK4edDFclGwtg==
+    dependencies:
+      query-string "^6.2.0"
+  
+  expo-notifications@~0.1.1:
+    version "0.1.7"
+    resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.1.7.tgz#a0a62376f4271f7cd1403c22749af0bb0d338ad1"
+    integrity sha512-yWGoCWQjQMVSMIsbhwR9pq/voAMTCgof+A7swV5uQM0X0WcfkqJMsB6Y5XMksdpkm+vEhvxRFyw0NXDso6pcjg==
+    dependencies:
+      badgin "^1.1.5"
+      expo-application "~2.1.1"
+      expo-constants "<10.0.0"
+      uuid "^3.4.0"
+  
   expo-permissions@~8.1.0:
     version "8.1.0"
     resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.1.0.tgz#a7f2ee91ba76ce3a467e7b10adaa9ca5201b226f"
     integrity sha512-QBHD+1J9+sGFnhoEGzMRchPweeEE0OJ9ehG/0l1BMRBA7qsLS9vRC1FTJ55NwjI0Kr4RTha9r6ZX1kZHT09f/w==
+  
+  expo-secure-store@~8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-8.1.0.tgz#1dcc4705c5264c828592a83842b8be8bbfb5f77f"
+    integrity sha512-EjCx9M2nH7iW3eNOjXl0I7oPypI0es6OStZakimR2iD8riLZp9LYHTj+39Iuz2o1m3OKi+bpwr3cHL52DxcDnA==
   
   expo-sqlite@~8.1.0:
     version "8.1.0"
@@ -4449,7 +4517,7 @@ Lockfile:
       object-assign "^4.1.0"
       strict-uri-encode "^1.0.0"
   
-  query-string@^6.11.1:
+  query-string@^6.11.1, query-string@^6.2.0:
     version "6.13.1"
     resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.1.tgz#d913ccfce3b4b3a713989fe6d39466d92e71ccad"
     integrity sha512-RfoButmcK+yCta1+FuU8REvisx1oEzhMKwhLUNcepQTPGcNMp1sIqjnfCtfnvGSQZQEhaBHvccujtWoUV3TTbA==
@@ -4498,6 +4566,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
     integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
   
+  react-lifecycles-compat@^3.0.4:
+    version "3.0.4"
+    resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+    integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+  
   react-native-animatable@^1.3.3:
     version "1.3.3"
     resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
@@ -4535,6 +4608,11 @@ Lockfile:
       hoist-non-react-statics "^2.3.1"
       invariant "^2.2.4"
       prop-types "^15.7.2"
+  
+  react-native-image-picker@^2.3.2:
+    version "2.3.2"
+    resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.2.tgz#ddfb257fd0cf2bf7f4b1887477a88265e0720c83"
+    integrity sha512-XJ7alzivLRcnb9kB1chsNIeGgAeVZvW8S7m4zXFkLNGFRUhq/Fh52wlrBp0OEXu6iTrQ+1SW3ikC8cP9wirFZw==
   
   react-native-iphone-x-helper@^1.2.1:
     version "1.2.1"
@@ -4596,6 +4674,11 @@ Lockfile:
       prop-types "^15.5.10"
       react-tween-state "^0.1.5"
   
+  react-native-tab-view@^2.11.0:
+    version "2.14.4"
+    resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.14.4.tgz#740007e62c8723c6813b8c8a05caaaf82c816620"
+    integrity sha512-oqkCflPFuZwDTbyY2WaN0377akSsmcttuYACR9LT7htZfO/tKR2Z/ynj1tbv2cz2esGuVICoga9cetN1lPimog==
+  
   react-native-view-shot@3.1.2:
     version "3.1.2"
     resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.1.2.tgz#8c8e84c67a4bc8b603e697dbbd59dbc9b4f84825"
@@ -4656,13 +4739,23 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-2.5.0.tgz#6d2940fb6f9ae557b47a717203b4058194ae9665"
     integrity sha512-wSsIdLYXYdi9wOOXGzaY4Hk/NIXaP8tClEpjlAPl1rhn3kU++gyJFcQ3xLsPWg0yRYq3y8jDPEWFFf81JqfP9Q==
   
-  react-navigation-stack@^2.7.0:
+  react-navigation-stack@^2.8.2:
     version "2.8.2"
     resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.8.2.tgz#e982bbf14a28b23c323b2d4a6fce4e9754b066e6"
     integrity sha512-e1VtlF6NDdzgKmnqE3ucgizrgUWUakdT+r7htQU24iG8AJUFQEw+tH4Lfyj0St6i8/RLckXm+o9VgYJT+pNiRw==
     dependencies:
       color "^3.1.2"
       react-native-iphone-x-helper "^1.2.1"
+  
+  react-navigation-tabs@^2.9.0:
+    version "2.9.0"
+    resolved "https://registry.yarnpkg.com/react-navigation-tabs/-/react-navigation-tabs-2.9.0.tgz#37407106f33367ff0ef3e5bb128d03f2721a50ef"
+    integrity sha512-+C9wyPtgxpEedhs1aX8pwtM7gJtpDMN3wPwq0jNkmONaurhb3hvE+mt3D7CLtX+zwxmMhcrPxSTSkynORKNn8g==
+    dependencies:
+      hoist-non-react-statics "^3.3.2"
+      react-lifecycles-compat "^3.0.4"
+      react-native-safe-area-view "^0.14.9"
+      react-native-tab-view "^2.11.0"
   
   react-navigation@^4.3.9:
     version "4.4.0"
@@ -4746,6 +4839,11 @@ Lockfile:
     integrity sha1-91VZZvMJjzyIYExEnPC69XeCdL8=
     dependencies:
       deep-diff "^0.3.5"
+  
+  redux-persist@^6.0.0:
+    version "6.0.0"
+    resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+    integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
   
   redux-thunk@^2.3.0:
     version "2.3.0"
